@@ -15,6 +15,11 @@ class BaseShape {
         m_position += m_speed;
     }
 public:
+    BaseShape(std::string& text, sf::Vector2f position, sf::Vector2f speed):
+        m_text(text),
+        m_position(position),
+        m_speed(speed)
+    {}
     virtual void OnCollision() = 0;
     virtual void Draw(sf::RenderWindow &window) = 0;
     void Update(sf::RenderWindow &window) {
