@@ -17,7 +17,9 @@ add_executable(main main.cpp
         include/BaseShape.h
         include/Rectangle.h
         lib/Rectangle.cpp
-        lib/BaseShape.cpp)
+        lib/BaseShape.cpp
+        include/Circle.h
+        lib/Circle.cpp)
 target_link_libraries(main PRIVATE sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)
 
