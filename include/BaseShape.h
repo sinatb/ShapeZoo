@@ -28,6 +28,6 @@ public:
     virtual void OnCollision(sf::RenderWindow &window) = 0;
     virtual void Draw(sf::RenderWindow &window) = 0;
     void Update(sf::RenderWindow &window);
-    ~BaseShape() = default;
+    virtual ~BaseShape() = default;
 };
 #endif //SHAPEZOO_BASESHAPE_H
