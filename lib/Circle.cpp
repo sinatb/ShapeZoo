@@ -21,5 +21,8 @@ void Circle::Draw(sf::RenderWindow &window) {
 }
 
 void Circle::OnCollision(sf::RenderWindow &window) {
-
+    if (m_position.x-m_radius <= 0 || m_position.x+m_radius >= window.getSize().x)
+        m_speed.x = -m_speed.x;
+    if (m_position.y-m_radius <= 0 || m_position.y+m_radius >= window.getSize().y)
+        m_speed.y = -m_speed.y;
 }
