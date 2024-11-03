@@ -16,10 +16,14 @@ Triangle::Triangle(std::string &text,
     m_triangle.setFillColor(m_color);
 }
 
-void Triangle::OnCollision(sf::RenderWindow &window) {
-
-}
-
 void Triangle::Draw(sf::RenderWindow &window) {
     window.draw(m_shape);
+}
+
+
+void Triangle::OnCollision(sf::RenderWindow &window) {
+    if (m_position.x < 0 || m_position.x+1.73*m_radius > window.getSize().x)
+        m_speed.x = -m_speed.x;
+    if (m_position.y < 0 || m_position.y+1.5*m_radius > window.getSize().y)
+        m_speed.y = -m_speed.y;
 }
