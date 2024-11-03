@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.27)
 project(ShapeZoo LANGUAGES CXX)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
 
@@ -12,7 +13,9 @@ FetchContent_Declare(SFML
         SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main main.cpp)
+add_executable(main main.cpp
+        include/BaseShape.h
+        include/Rectangle.h)
 target_link_libraries(main PRIVATE sfml-graphics)
 target_compile_features(main PRIVATE cxx_std_17)
 
