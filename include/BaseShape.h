@@ -9,17 +9,22 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 #include <random>
+#include <iostream>
+
 class BaseShape {
 
 void Move();
 
 static sf::Vector2f getRandomDirection();
 
+bool loadFont();
+
 protected:
     std::string  m_text;
     sf::Vector2f m_position;
     sf::Vector2f m_speed;
     sf::Color    m_color;
+    sf::Font     m_font;
     sf::Vector2f m_direction;
     sf::Shape&   m_shape;
 
