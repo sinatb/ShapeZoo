@@ -1,0 +1,6 @@
+1280 720
+BLUE
+shape zoo 2
+triangle T1 300 200 0.2 0.3 RED 50
+circle C1 500 300 0.1 1 GREEN 20
+rectangle R1 200 600 0.4 0.3 BLACK 80 20
