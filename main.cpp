@@ -21,10 +21,10 @@ int main() {
                                                  sf::Color::Red, 200, 100)
                                                  );
     shapes.push_back(std::make_unique<Triangle>(text,
-                                                sf::Vector2f(400, 400),
+                                                sf::Vector2f(300, 200),
                                                 sf::Vector2f(0.05, 0.05),
                                                 sf::Color::Red,
-                                                20)
+                                                80)
                                                 );
 
     while (window.isOpen())
