@@ -25,6 +25,7 @@ protected:
     sf::Vector2f m_speed;
     sf::Color    m_color;
     sf::Font     m_font;
+    sf::Text     m_rendered_text;
     sf::Vector2f m_direction;
     sf::Shape&   m_shape;
 

@@ -16,6 +16,10 @@ BaseShape::BaseShape(std::string &text,
     m_direction(getRandomDirection())
 {
     loadFont();
+    m_rendered_text.setFont(m_font);
+    m_rendered_text.setString(m_text);
+    m_rendered_text.setCharacterSize(20);
+    m_rendered_text.setFillColor(sf::Color::White);
 }
 
 void BaseShape::Update(sf::RenderWindow &window)
