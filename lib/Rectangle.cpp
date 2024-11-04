@@ -20,6 +20,9 @@ Rectangle::Rectangle(std::string &text,
 
 void Rectangle::Draw(sf::RenderWindow &window) {
     window.draw(m_rectangle);
+    m_rendered_text.setPosition(m_position.x + m_width/2 - static_cast<float>((m_text.size() / 2.0) * 15),
+                                m_position.y + m_height/2 - 10);
+    window.draw(m_rendered_text);
 }
 
 void Rectangle::OnCollision(sf::RenderWindow &window) {
