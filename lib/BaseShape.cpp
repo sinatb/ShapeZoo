@@ -14,7 +14,13 @@ BaseShape::BaseShape(std::string &text,
     m_color(color),
     m_shape(shape),
     m_direction(getRandomDirection())
-{}
+{
+    loadFont();
+    m_rendered_text.setFont(m_font);
+    m_rendered_text.setString(m_text);
+    m_rendered_text.setCharacterSize(20);
+    m_rendered_text.setFillColor(sf::Color::White);
+}
 
 void BaseShape::Update(sf::RenderWindow &window)
 {
@@ -38,4 +44,13 @@ sf::Vector2f BaseShape::getRandomDirection() {
     float rand_y = dist(gen);
     float div = std::sqrt(rand_x*rand_x + rand_y*rand_y);
     return {rand_x/div, rand_y/div};
+}
+
+
+bool BaseShape::loadFont() {
+    if (!m_font.loadFromFile(R"(D:\works\gameDev\COMP4300\ShapeZoo\fonts\Minecrafter.Alt.ttf)")){
+        std::cout << "ERROR: Failed to load font" << std::endl;
+        exit(-1);
+    }
+    return true;
 }

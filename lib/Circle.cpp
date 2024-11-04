@@ -18,11 +18,14 @@ Circle::Circle(std::string& text,
 
 void Circle::Draw(sf::RenderWindow &window) {
     window.draw(m_shape);
+    m_rendered_text.setPosition(m_position.x + m_radius - static_cast<float>((m_text.size() / 2.0) * 15),
+                                m_position.y + m_radius - 10);
+    window.draw(m_rendered_text);
 }
 
 void Circle::OnCollision(sf::RenderWindow &window) {
-    if (m_position.x-m_radius <= 0 || m_position.x+m_radius >= window.getSize().x)
+    if (m_position.x <= 0 || m_position.x+2*m_radius >= window.getSize().x)
         m_speed.x = -m_speed.x;
-    if (m_position.y-m_radius <= 0 || m_position.y+m_radius >= window.getSize().y)
+    if (m_position.y <= 0 || m_position.y+2*m_radius >= window.getSize().y)
         m_speed.y = -m_speed.y;
 }
