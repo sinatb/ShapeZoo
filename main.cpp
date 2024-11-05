@@ -13,6 +13,7 @@ int main() {
     //
 
     sf::RenderWindow window(sf::VideoMode(window_width, window_height), window_name);
+    window.setFramerateLimit(60);
 
     while (window.isOpen())
     {
