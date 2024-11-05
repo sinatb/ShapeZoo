@@ -12,6 +12,13 @@
 #include "Circle.h"
 #include <memory>
 
+struct CommonParsingData{
+    std::string text;
+    sf::Vector2f pos;
+    sf::Vector2f spd;
+    sf::Color color;
+};
+
 class TextParser{
     std::string m_window_name;
     std::vector<std::unique_ptr<BaseShape>> m_shapes;
@@ -20,6 +27,7 @@ class TextParser{
     std::string m_window_name_data;
     std::vector<std::string> m_shapes_data;
     static sf::Color ParseColor(std::string& color);
+    static CommonParsingData ParseCommonData(std::string& data);
     static std::unique_ptr<Triangle> ParseTriangle(std::string& data);
     static std::unique_ptr<Circle> ParseCircle(std::string& data);
     static std::unique_ptr<Rectangle> ParseRectangle(std::string& data);

@@ -92,7 +92,7 @@ std::vector<std::unique_ptr<BaseShape>> TextParser::getShapes() {
     return shapes;
 }
 
-std::unique_ptr<Triangle> TextParser::ParseTriangle(std::string &data) {
+CommonParsingData TextParser::ParseCommonData(std::string &data) {
     std::istringstream iss(data);
     std::string shape_type;
     iss >> shape_type;
@@ -123,45 +123,33 @@ std::unique_ptr<Triangle> TextParser::ParseTriangle(std::string &data) {
     iss >> color_s;
     color = ParseColor(color_s);
 
+    return {std::move(text), pos, spd, color};
+}
+
+std::unique_ptr<Triangle> TextParser::ParseTriangle(std::string &data) {
+
+    CommonParsingData cpd = ParseCommonData(data);
+    std::istringstream iss(data);
+    std::string tmp;
+    for (int i=0; i<7; i++)
+        iss >> tmp;
+
     //size parsing
     float radius;
     std::string radius_s;
     iss >> radius_s;
     radius = std::stof(radius_s);
 
-    return std::make_unique<Triangle>(text, pos, spd, color, radius);
+    return std::make_unique<Triangle>(cpd.text, cpd.pos, cpd.spd, cpd.color, radius);
 }
 
 std::unique_ptr<Circle> TextParser::ParseCircle(std::string &data) {
+
+    CommonParsingData cpd = ParseCommonData(data);
     std::istringstream iss(data);
-    std::string shape_type;
-    iss >> shape_type;
-
-    //name parsing
-    std::string text;
-    iss >> text;
-
-    //position parsing
-    sf::Vector2f pos;
-    std::string pos_x, pos_y;
-    iss >> pos_x;
-    iss >> pos_y;
-    pos.x = std::stof(pos_x);
-    pos.y = std::stof(pos_y);
-
-    //speed parsing
-    sf::Vector2f spd;
-    std::string spd_x, spd_y;
-    iss >> spd_x;
-    iss >> spd_y;
-    spd.x = std::stof(spd_x);
-    spd.y = std::stof(spd_y);
-
-    //color parsing
-    sf::Color color;
-    std::string color_s;
-    iss >> color_s;
-    color = ParseColor(color_s);
+    std::string tmp;
+    for (int i=0; i<7; i++)
+        iss >> tmp;
 
     //size parsing
     float radius;
@@ -169,39 +157,16 @@ std::unique_ptr<Circle> TextParser::ParseCircle(std::string &data) {
     iss >> radius_s;
     radius = std::stof(radius_s);
 
-    return std::make_unique<Circle>(text, pos, spd, color, radius);
+    return std::make_unique<Circle>(cpd.text, cpd.pos, cpd.spd, cpd.color, radius);
 }
 
 std::unique_ptr<Rectangle> TextParser::ParseRectangle(std::string &data) {
+
+    CommonParsingData cpd = ParseCommonData(data);
     std::istringstream iss(data);
-    std::string shape_type;
-    iss >> shape_type;
-
-    //name parsing
-    std::string text;
-    iss >> text;
-
-    //position parsing
-    sf::Vector2f pos;
-    std::string pos_x, pos_y;
-    iss >> pos_x;
-    iss >> pos_y;
-    pos.x = std::stof(pos_x);
-    pos.y = std::stof(pos_y);
-
-    //speed parsing
-    sf::Vector2f spd;
-    std::string spd_x, spd_y;
-    iss >> spd_x;
-    iss >> spd_y;
-    spd.x = std::stof(spd_x);
-    spd.y = std::stof(spd_y);
-
-    //color parsing
-    sf::Color color;
-    std::string color_s;
-    iss >> color_s;
-    color = ParseColor(color_s);
+    std::string tmp;
+    for (int i=0; i<7; i++)
+        iss >> tmp;
 
     //size parsing
     float width,height;
@@ -211,5 +176,5 @@ std::unique_ptr<Rectangle> TextParser::ParseRectangle(std::string &data) {
     width = std::stof(width_s);
     height = std::stof(height_s);
 
-    return std::make_unique<Rectangle>(text, pos, spd, color, width, height);
+    return std::make_unique<Rectangle>(cpd.text, cpd.pos, cpd.spd, cpd.color, width, height);
 }
